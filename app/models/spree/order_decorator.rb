@@ -2,7 +2,8 @@
 
 Spree::OrderContents.class_eval do
 
-  def add_to_line_item(line_item, variant, quantity, currency = nil, shipment = nil)
+  def add_to_line_item(variant, quantity, currency = nil, shipment = nil)
+    line_item = grab_line_item_by_variant(variant)
     if line_item
       line_item.target_shipment = shipment
       line_item.quantity += quantity.to_i
